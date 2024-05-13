@@ -25,7 +25,7 @@ const useNavigation = () => {
   };
 
   const navigateToWelcome = () => {
-    navigate("/welcome");
+    navigate("/");
   };
 
 
