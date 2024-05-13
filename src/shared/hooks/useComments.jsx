@@ -1,6 +1,6 @@
 import {  useState } from "react";
 import toast from "react-hot-toast";
-import { getComments as getCommentsRequest } from "../../service/api";
+import { commentById as getCommentsRequest } from "../../service/api";
 
 export const useComments = () => {
     const [comments, setComments] = useState([]);

@@ -27,6 +27,16 @@ export const commentPut = async (id, data) => {
     }
 }
 
+export const commentById = async (id) => {
+    try {
+        return await apiClient.get(`/comment/${id}`);
+    } catch (e) {
+        return {error: true,
+        e
+        }
+    }
+}
+
 export const commentDelete = async (id) => {
     try {
         return await apiClient.delete(`/comment/${id}`);
