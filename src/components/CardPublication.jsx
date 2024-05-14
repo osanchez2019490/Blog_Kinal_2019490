@@ -1,10 +1,20 @@
 import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
+
 
 export const CardPublication = ({ publication }) => {
+    
+    const navigate = useNavigate();
+
+
+    const handleReadMore = () => {
+        navigate(`/publication/${publication._id}`);
+    };
+
     return (
-        <div className='d-flex flex-wrap justify-content-between mb-4' style= {{marginTop: '2rem'}}>
+        <div className='d-flex flex-wrap justify-content-between mb-4' style={{ marginTop: '2rem' }}>
             <div className="card border-0 shadow" style={{ width: '40rem' }}>
                 <div className="card-body">
                     <h5 className="card-title">{publication.title}</h5>
@@ -13,9 +23,9 @@ export const CardPublication = ({ publication }) => {
                         <div className="card-overlay d-flex align-items-center justify-content-center position-absolute top-0 start-0 w-100 h-100 rounded" />
                     </div>
                     <p className="card-title">Author: {publication.author}</p>
-                    <a href={publication.url} className="btn btn-primary">
+                    <button onClick={handleReadMore} className="btn btn-primary">
                         Read more
-                    </a>
+                    </button>
                 </div>
             </div>
             <style jsx>{`

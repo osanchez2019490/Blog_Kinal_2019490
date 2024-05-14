@@ -27,9 +27,9 @@ export const commentPut = async (id, data) => {
     }
 }
 
-export const commentById = async (id) => {
+export const commentById = async (ipublicationIdd) => {
     try {
-        return await apiClient.get(`/comment/${id}`);
+        return await apiClient.get(`/comment/${ipublicationIdd}`);
     } catch (e) {
         return {error: true,
         e
@@ -62,9 +62,9 @@ export const publicationGet = async () => {
 
 
 
-export const publicationById = async (id) => {
+export const publicationById = async (publicationId) => {
     try {
-        return await apiClient.get(`/publication/${id}`);
+        return await apiClient.get(`/publication/${publicationId}`);
     } catch (e) {
         return {error: true,
         e

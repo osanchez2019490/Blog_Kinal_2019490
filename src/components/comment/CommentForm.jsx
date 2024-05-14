@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Input from '../Input';
+import {Input as InputComponent} from '../Input.jsx';
 const CommentForm = ({ initialValue = '', onSubmit, onCancel }) => {
     const [text, setText] = useState(initialValue);
 
@@ -20,7 +20,7 @@ const CommentForm = ({ initialValue = '', onSubmit, onCancel }) => {
 
     return (
         <div className="card p-3">
-            <Input
+            <InputComponent
                 label="Your Comment"
                 value={text}
                 onChangeHandler={handleChange}

@@ -4,6 +4,7 @@ import CommentForm from './CommentForm';
 
 const CommentBox = ({ comments, onAddComment, onUpdateComment, onDeleteComment }) => {
     const [newCommentText, setNewCommentText] = useState('');
+    const [isAdding, setIsAdding] = useState(false);
 
     const handleAddComment = () => {
         if (newCommentText.trim() !== '') {
@@ -13,27 +14,30 @@ const CommentBox = ({ comments, onAddComment, onUpdateComment, onDeleteComment }
     };
 
     return (
-        <div className="card mb-3">
-            <div className="card-body">
-                {isEditing ? (
-                    <CommentForm
-                        initialValue={editedText}
-                        onSubmit={handleSave}
-                        onCancel={() => setIsEditing(false)}
+        <div className="mt-4">
+            <h4>Comments</h4>
+            <div className="mb-3">
+                {comments.map(comment => (
+                    <Comment
+                        key={comment._id}
+                        comment={comment}
+                        onUpdate={(newText) => onUpdateComment(comment._id, newText)}
+                        onDelete={() => onDeleteComment(comment._id)}
                     />
-                ) : (
-                    <>
-                        <p className="card-text">{editedText}</p>
-                        <div className="d-flex">
-                            <button className="btn btn-primary me-2" onClick={handleEdit}>Edit</button>
-                            <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
-                        </div>
-                    </>
-                )}
+                ))}
+            </div>
+            <div className="card mb-3">
+                <div className="card-body">
+                    <h5>Add a Comment</h5>
+                    <CommentForm
+                        initialValue={newCommentText}
+                        onSubmit={handleAddComment}
+                        onCancel={() => setIsAdding(false)}
+                    />
+                </div>
             </div>
         </div>
     );
 };
-
 
 export default CommentBox;
