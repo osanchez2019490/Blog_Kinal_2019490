@@ -1,9 +1,13 @@
+
 import { useNavigate } from "react-router-dom";
-import logo from '../../assets/react.svg';
+import logo from "../../assets/img/Blog.jpg";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 
 const NavLogo = () => {
     return (
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand fs-1" href="/">
             <img
                 className="nav-logo"
                 src={logo}
@@ -19,44 +23,42 @@ const useNavigation = () => {
     const navigate = useNavigate();
 
     const navigateToPublication = () => {
-        navigate("/publications");
+        navigate("/publication");
     };
 
     const navigateToWelcome = () => {
-        navigate("/welcome");
+        navigate("/");
     };
 
     return {
         navigateToPublication,
-        navigateToWelcome
+        navigateToWelcome,
     };
 };
 
-const NavButton = ({ text, onClickHandler }) => {
-    return (
-        <li className="nav-item">
-            <button className="btn btn-secondary nav-button" onClick={onClickHandler}>
-                {text}
-            </button>
-        </li>
-    );
-};
-
-export const Navbar = () => {
+export const NavbarDocument = () => {
     const { navigateToPublication, navigateToWelcome } = useNavigation();
-  
+
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <NavLogo />
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                    <NavButton text="Publication" onClickHandler={navigateToPublication} />
-                    <NavButton text="Welcome" onClickHandler={navigateToWelcome} />
-                </ul>
-            </div>
-        </nav>
+        <Navbar
+            bg="dark"
+            data-bs-theme="dark"
+            fixed="top"
+            expand="bg"
+            className="py-1"
+        >
+            <Container className="w-100">
+                <Navbar.Brand href="/">
+                    <NavLogo />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link onClick={navigateToPublication}>Publication</Nav.Link>
+                        <Nav.Link onClick={navigateToWelcome}>Welcome</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 };
