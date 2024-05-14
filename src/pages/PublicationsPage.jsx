@@ -6,8 +6,11 @@ export const PublicationsPage = () => {
   return (
     <div>
       <NavbarDocument/>
-      <h1>Publications</h1>
-      <PublicationList />
+      <div className="publications-container">
+        <h1 >Publications</h1>
+        <PublicationList />
+      </div>
+
     </div>
   );
 };

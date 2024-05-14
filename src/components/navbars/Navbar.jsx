@@ -13,7 +13,7 @@ const NavLogo = () => {
                 src={logo}
                 alt="Logo"
                 width="30"
-                height="30"
+                height="70"
             />
         </a>
     );
@@ -44,7 +44,7 @@ export const NavbarDocument = () => {
             bg="dark"
             data-bs-theme="dark"
             fixed="top"
-            expand="bg"
+            expand="lg"
             className="py-1"
         >
             <Container className="w-100">
@@ -54,8 +54,8 @@ export const NavbarDocument = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
+                        <Nav.Link onClick={navigateToWelcome}>Welcome</Nav.Link>    
                         <Nav.Link onClick={navigateToPublication}>Publication</Nav.Link>
-                        <Nav.Link onClick={navigateToWelcome}>Welcome</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

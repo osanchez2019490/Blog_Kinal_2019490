@@ -1,25 +1,39 @@
-import { useState } from "react";
+import { useState, useCallback} from "react";
 import toast from "react-hot-toast";
 import { publicationGet as getPublicationsRequest } from "../../service/api";
 
 export const usePublications = () => {
     const [publications, setPublications] = useState([]);
+    const [isFetching, setIsFetching] = useState(false);
 
-    const getPublications = async () => {
-        const publicationData = await getPublicationsRequest();
+    const getPublications = useCallback(async () => {
+        setIsFetching(true);
+        try {
+            const publicationData = await getPublicationsRequest({
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache'
+                }
+            });
 
-        if (publicationData.error) {
-            return toast.error(
-                publicationData.e?.response?.data || 'Error ocurred when reading channels'
-            )
+            if (publicationData.error) {
+                toast.error(
+                    publicationData.e?.response?.data || 'Error occurred when reading channels'
+                );
+            } else {
+                setPublications(publicationData.data.publications);
+            }
+        } catch (error) {
+            toast.error('Error occurred when fetching publications');
+        } finally {
+            setIsFetching(false);
         }
-        setPublications(publicationData.data.publications);
-    }
+    }, []);
 
     return {
         getPublications,
         publications,
-        isFetching: !Boolean(publications),
+        isFetching,
         allPublications: publications,
-    }
-}
+    };
+};

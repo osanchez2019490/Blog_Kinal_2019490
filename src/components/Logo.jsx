@@ -1,4 +1,4 @@
-import logo from '../assets/img/Blog.PNG'
+import logo from '../assets/img/Blog.jpg'
 
 export const Logo = ({text}) => {
   return (

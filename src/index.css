@@ -39,8 +39,8 @@
 .image-container {
   display: inline-block;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 50px 5px 50px;
+  box-shadow: 0 0 50px rgb(0, 0, 0);
   overflow: hidden;
   width: 100%;
   max-width: 400px;
@@ -51,4 +51,8 @@
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.publications-container {
+  margin-top: 5rem;
 }

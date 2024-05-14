@@ -1,10 +1,16 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { CardPublication } from './CardPublication';
+import { usePublications } from '../shared/hooks/usePublications';
 
+export const PublicationList = () => {
+  const { getPublications, publications, isFetching } = usePublications();
 
-export const PublicationList = ({ publications }) => {
-  if (!publications) {
-    return <div className="row">No publications found</div>;
+  useEffect(() => {
+    getPublications();
+  }, [getPublications]);
+
+  if (isFetching) {
+    return <div className="row">Cargando publicaciones...</div>;
   }
 
   return (
@@ -16,7 +22,7 @@ export const PublicationList = ({ publications }) => {
           </div>
         ))
       ) : (
-        <div className="col-md-12">No publications found</div>
+        <div className="col-md-12">No se encontraron publicaciones</div>
       )}
     </div>
   );

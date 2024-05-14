@@ -48,16 +48,6 @@ export const commentDelete = async (id) => {
     }
 }
 
-export const publicationPost = async (data) => {
-    try {
-        return await apiClient.post('/publication', data)
-    } catch (e) {
-        return {
-            error: true,
-            e
-        }
-    }
-}
 
 export const publicationGet = async () => {
     try {
@@ -70,25 +60,14 @@ export const publicationGet = async () => {
     }
 }
 
-export const publicationPut = async (id, data) => {
-    try {
-        return await apiClient.put(`/publication/${id}`, data);
-    } catch (e) {
-        return {
-            error: true,
-            e
-        }
-    }
-}
 
 
-export const publicationDelete = async (id) => {
+export const publicationById = async (id) => {
     try {
-        return await apiClient.delete(`/publication/${id}`);
+        return await apiClient.get(`/publication/${id}`);
     } catch (e) {
-        return {
-            error: true,
-            e
+        return {error: true,
+        e
         }
     }
 }
